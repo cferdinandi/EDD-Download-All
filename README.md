@@ -1,5 +1,5 @@
 # GMT EDD Download All
-Adds a "Download All" links to your multi-file purchases.
+Adds a "Download All" links to your multi-file purchases. Forked and updated from [EDD Download All](https://github.com/easydigitaldownloads/EDD-Download-All).
 
 [Download](https://github.com/cferdinandi/gmt-edd-download-all/archive/master.zip)
 
