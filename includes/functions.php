@@ -215,18 +215,18 @@ add_action( 'edd_download_all_files', 'edd_download_all_files' );
 
 /**
  * Add tag to email templates
+ * @param Array $email_tags The existing email tags
  * @return Array The download all tag
  */
-function edd_download_all_setup_email_tags() {
-    return array(
-        array(
-            'tag'         => 'download_all',
-            'description' => __( 'Adds a link to download all files as a zip', 'edd' ),
-            'function'    => 'edd_download_all_get_email_link'
-        ),
+function edd_download_all_setup_email_tags( $email_tags ) {
+    $email_tags[] = array(
+        'tag'         => 'download_all_links',
+        'description' => __( 'Adds a link to download all files as a zip', 'edd' ),
+        'function'    => 'edd_download_all_get_email_link'
     );
+    return $email_tags;
 }
-add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags' );
+add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags', 10, 3 );
 
 
 
