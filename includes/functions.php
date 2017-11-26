@@ -210,3 +210,46 @@ function edd_download_all_files() {
     exit;
 }
 add_action( 'edd_download_all_files', 'edd_download_all_files' );
+
+
+
+function edd_download_all_setup_email_tags() {
+
+    // Setup default tags array
+    $email_tags = array(
+        array(
+            'tag'         => 'download_all',
+            'description' => __( 'Adds a link to download all files as a zip', 'edd' ),
+            'function'    => 'edd_download_all_get_link'
+        ),
+    );
+
+    // Apply edd_email_tags filter
+    $email_tags = apply_filters( 'edd_email_tags', $email_tags );
+
+    // Add email tags
+    foreach ( $email_tags as $email_tag ) {
+        edd_add_email_tag( $email_tag['tag'], $email_tag['description'], $email_tag['function'] );
+    }
+
+}
+add_action( 'edd_add_email_tags', 'edd_setup_email_tags' );
+
+
+
+function edd_download_all_get_link( $payment_id ) {
+
+    // Variables
+    $files = edd_download_all_get_files( $payment_id );
+    $success_url = edd_get_success_page_uri();
+    $download_url = esc_url( add_query_arg( array( 'payment_id' => $payment->ID, 'edd_action' => 'download_all_files' ), $success_url ) );
+
+    // Make sure there's at least 2 downloads
+    if ( count( $files ) < 2 ) return;
+
+    // Generate downloads row
+    $downloads = '<p><a href="' . $download_url . '">' . edd_get_option( 'edd_download_all_link_text', __( 'Download', 'edd-download-all' ) ) . '</a></p>';
+
+    return $downloads;
+
+}
