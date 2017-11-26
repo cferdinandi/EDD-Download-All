@@ -213,36 +213,34 @@ add_action( 'edd_download_all_files', 'edd_download_all_files' );
 
 
 
+/**
+ * Add tag to email templates
+ * @return Array The download all tag
+ */
 function edd_download_all_setup_email_tags() {
-
-    // Setup default tags array
-    $email_tags = array(
+    return array(
         array(
             'tag'         => 'download_all',
             'description' => __( 'Adds a link to download all files as a zip', 'edd' ),
             'function'    => 'edd_download_all_get_link'
         ),
     );
-
-    // Apply edd_email_tags filter
-    $email_tags = apply_filters( 'edd_email_tags', $email_tags );
-
-    // Add email tags
-    foreach ( $email_tags as $email_tag ) {
-        edd_add_email_tag( $email_tag['tag'], $email_tag['description'], $email_tag['function'] );
-    }
-
 }
-add_action( 'edd_add_email_tags', 'edd_setup_email_tags' );
+add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags', 10, 3 );
 
 
 
+/**
+ * Get the download all link for the email
+ * @param  Number $payment_id The payment ID
+ * @return String             The download all URL
+ */
 function edd_download_all_get_link( $payment_id ) {
 
     // Variables
     $files = edd_download_all_get_files( $payment_id );
     $success_url = edd_get_success_page_uri();
-    $download_url = esc_url( add_query_arg( array( 'payment_id' => $payment->ID, 'edd_action' => 'download_all_files' ), $success_url ) );
+    $download_url = esc_url( add_query_arg( array( 'payment_id' => $payment_id, 'edd_action' => 'download_all_files' ), $success_url ) );
 
     // Make sure there's at least 2 downloads
     if ( count( $files ) < 2 ) return;
