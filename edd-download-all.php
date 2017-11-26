@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/cferdinandi/gmt-edd-download-all
  * GitHub Plugin URI: https://github.com/cferdinandi/gmt-edd-download-all
  * Description:       Adds a download all option to multi-file downloads in EDD
- * Version:           2.1.3
+ * Version:           2.1.4
  * Author:            Chris Ferdinandi
  * Author URI:        https://gomakethings.com
  * Text Domain:       edd-download-all
@@ -62,7 +62,7 @@ if( ! class_exists( 'EDD_Download_All' ) ) {
          */
         private function setup_constants() {
             // Plugin version
-            define( 'EDD_DOWNLOAD_ALL_VER', '2.1.3' );
+            define( 'EDD_DOWNLOAD_ALL_VER', '2.1.4' );
 
             // Plugin path
             define( 'EDD_DOWNLOAD_ALL_DIR', plugin_dir_path( __FILE__ ) );

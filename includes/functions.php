@@ -246,7 +246,7 @@ function edd_download_all_get_email_link( $payment_id ) {
     if ( count( $files ) < 2 ) return;
 
     // Generate downloads row
-    $downloads = '<p><a href="' . $download_url . '">' . edd_get_option( 'edd_download_all_link_text', __( 'Download', 'edd-download-all' ) ) . '</a></p>';
+    $downloads = '<a href="' . $download_url . '">' . edd_get_option( 'edd_download_all_link_text', __( 'Download', 'edd-download-all' ) ) . '</a>';
 
     return $downloads;
 
