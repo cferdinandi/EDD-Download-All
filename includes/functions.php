@@ -222,11 +222,11 @@ function edd_download_all_setup_email_tags() {
         array(
             'tag'         => 'download_all',
             'description' => __( 'Adds a link to download all files as a zip', 'edd' ),
-            'function'    => 'edd_download_all_get_link'
+            'function'    => 'edd_download_all_get_email_link'
         ),
     );
 }
-add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags', 10, 3 );
+add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags' );
 
 
 
@@ -235,7 +235,7 @@ add_filter( 'edd_email_tags', 'edd_download_all_setup_email_tags', 10, 3 );
  * @param  Number $payment_id The payment ID
  * @return String             The download all URL
  */
-function edd_download_all_get_link( $payment_id ) {
+function edd_download_all_get_email_link( $payment_id ) {
 
     // Variables
     $files = edd_download_all_get_files( $payment_id );
